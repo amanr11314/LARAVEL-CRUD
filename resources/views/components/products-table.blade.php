@@ -42,9 +42,6 @@
                             {{-- {{ $loop->iteration }} --}}
                             {{ $product->id }}
                         </td>
-                        {{-- <td class="w-32 p-4">
-                                        <img src="products/{{ $product->image }}" alt="{{ $product->name }}">
-                                    </td> --}}
                         <td class="px-6 py-4 font-semibold text-gray-900">
                             <a href="products/{{ $product->id }}/show">{{ $product->name }}</a>
                         </td>
@@ -53,26 +50,37 @@
 
                             <div class="flex">
                                 <a href="products/{{ $product->id }}/edit" class="btn-action-blue">Edit</a>
-                                <form action="products/{{ $product->id }}/delete" method="post">
+                                {{-- <form action="products/{{ $product->id }}/delete" method="post">
                                     @csrf
                                     @method('DELETE')
                                     <button type="submit"
                                         class="focus:outline-none text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2">Delete</button>
-                                </form>
+                                </form> --}}
+                                <button type="button" id="{{ $product->id }}" data-modal-target="popup-modal"
+                                    data-modal-toggle="popup-modal"
+                                    class="btn-delete focus:outline-none text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2">Delete</button>
                             </div>
-
-
                         </td>
-
                     </tr>
                 @endforeach
-
-
             </tbody>
         </table>
         {{-- pagination  --}}
         {{ $products->links('vendor.pagination.default') }}
-
+        @verbatim
+            <script src="https://code.jquery.com/jquery-3.5.1.min.js"
+                integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
+            <script>
+                $(document).ready(function() {
+                    $('button.btn-delete').click(function (){
+                    var deleteProuctId = $(this).attr('id');
+                        console.log('clicked ',deleteProuctId)
+                        var actionUrlOnDelete = `products/${deleteProuctId}/delete`;
+                        $('#deleteProductForm').attr('action',actionUrlOnDelete);
+                    });
+                });
+            </script>
+        @endverbatim
     </div>
 @else
     @if ($isSearch)
