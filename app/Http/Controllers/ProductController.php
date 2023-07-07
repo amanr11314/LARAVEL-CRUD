@@ -115,7 +115,8 @@ class ProductController extends Controller
     {
         $product = Product::where('id', $id)->first();
         $product->delete();
-        return back()->withSuccess('Product deleted !!');
+
+        return Redirect::route('products.index')->withSuccess('Product deleted !!');
     }
 
     public function show($id)
