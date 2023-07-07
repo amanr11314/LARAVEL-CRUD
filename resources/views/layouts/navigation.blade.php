@@ -16,76 +16,68 @@
                         {{ __('Products') }}
                     </x-nav-link>
                 </div>
-
-
             </div>
 
 
-
+            @php
+                $notifications = ['Enable notifications', 'Enable 2FA authentication', 'Subscribe to newsletter'];
+            @endphp
             <div class="hidden sm:flex sm:items-center sm:ml-6">
-                {{-- Notification --}}
-                <div class="flex items-center shrink-0">
-                    {{-- Notification Icon --}}
-                    <button id="dropdownToggleButton" data-dropdown-toggle="dropdownToggle">
-                        <svg class="w-6 h-6 text-gray-800 dark:text-white" aria-hidden="true"
-                            xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 21">
-                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                d="M10 3.464V1.1m0 2.365a5.338 5.338 0 0 1 5.133 5.368v1.8c0 2.386 1.867 2.982 1.867 4.175C17 15.4 17 16 16.462 16H3.538C3 16 3 15.4 3 14.807c0-1.193 1.867-1.789 1.867-4.175v-1.8A5.338 5.338 0 0 1 10 3.464ZM1.866 8.832a8.458 8.458 0 0 1 2.252-5.714m14.016 5.714a8.458 8.458 0 0 0-2.252-5.714M6.54 16a3.48 3.48 0 0 0 6.92 0H6.54Z" />
-                        </svg>
-                    </button>
-                    <!-- Notifications in a Dropdown menu -->
-                    <div id="dropdownToggle"
-                        class="z-10 hidden bg-white divide-y divide-gray-100 rounded-lg shadow w-72 dark:bg-gray-700 dark:divide-gray-600">
+                <x-dropdown align="right" width="w-72">
+                    <x-slot name="trigger">
+                        <button
+                            class="inline-flex items-center px-3 py-2 text-sm font-medium leading-4 text-gray-500 transition duration-150 ease-in-out bg-white border border-transparent rounded-md hover:text-gray-700 focus:outline-none">
+
+                            <div>
+                                <svg class="w-6 h-6 text-gray-800 dark:text-white" aria-hidden="true"
+                                    xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 21">
+                                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                                        stroke-width="2"
+                                        d="M10 3.464V1.1m0 2.365a5.338 5.338 0 0 1 5.133 5.368v1.8c0 2.386 1.867 2.982 1.867 4.175C17 15.4 17 16 16.462 16H3.538C3 16 3 15.4 3 14.807c0-1.193 1.867-1.789 1.867-4.175v-1.8A5.338 5.338 0 0 1 10 3.464ZM1.866 8.832a8.458 8.458 0 0 1 2.252-5.714m14.016 5.714a8.458 8.458 0 0 0-2.252-5.714M6.54 16a3.48 3.48 0 0 0 6.92 0H6.54Z" />
+                                </svg>
+                            </div>
+                        </button>
+                    </x-slot>
+
+                    <x-slot name="content">
                         <ul class="p-3 space-y-1 text-sm text-gray-700 dark:text-gray-200"
                             aria-labelledby="dropdownToggleButton">
-                            <li>
-                                <div class="flex p-2 rounded hover:bg-gray-100 dark:hover:bg-gray-600">
-                                    <label class="relative inline-flex items-center w-full cursor-pointer">
-                                        <input type="checkbox" value="" class="sr-only peer">
-                                        <div
-                                            class="w-9 h-5 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-blue-300 dark:peer-focus:ring-blue-800 rounded-full peer dark:bg-gray-600 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-4 after:w-4 after:transition-all dark:border-gray-500 peer-checked:bg-blue-600">
-                                        </div>
-                                        <span class="ml-3 text-sm font-medium text-gray-900 dark:text-gray-300">Enable
-                                            notifications</span>
-                                    </label>
-                                </div>
-                            </li>
-                            <li>
-                                <div class="flex p-2 rounded hover:bg-gray-100 dark:hover:bg-gray-600">
-                                    <label class="relative inline-flex items-center w-full cursor-pointer">
-                                        <input type="checkbox" value="" class="sr-only peer">
-                                        <div
-                                            class="w-9 h-5 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-blue-300 dark:peer-focus:ring-blue-800 rounded-full peer dark:bg-gray-600 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-4 after:w-4 after:transition-all dark:border-gray-500 peer-checked:bg-blue-600">
-                                        </div>
-                                        <span class="ml-3 text-sm font-medium text-gray-900 dark:text-gray-300">Enable
-                                            2FA authentication</span>
-                                    </label>
-                                </div>
-                            </li>
-                            <li>
-                                <div class="flex p-2 rounded hover:bg-gray-100 dark:hover:bg-gray-600">
-                                    <label class="relative inline-flex items-center w-full cursor-pointer">
-                                        <input type="checkbox" value="" class="sr-only peer">
-                                        <div
-                                            class="w-9 h-5 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-blue-300 dark:peer-focus:ring-blue-800 rounded-full peer dark:bg-gray-600 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-4 after:w-4 after:transition-all dark:border-gray-500 peer-checked:bg-blue-600">
-                                        </div>
+                            @foreach ($notifications as $notification)
+                                <li>
+                                    <div class="flex p-2 rounded hover:bg-gray-100 dark:hover:bg-gray-600">
                                         <span
-                                            class="ml-3 text-sm font-medium text-gray-900 dark:text-gray-300">Subscribe
-                                            to newsletter</span>
-                                    </label>
-                                </div>
-                            </li>
-                            <li>
-                                <div class="flex items-center justify-center">
-                                    <a class="text-sm text-gray-600 underline rounded-md hover:text-gray-900 focus:outline-none"
-                                        href="#">
-                                        {{ __('Mark all as read') }}
-                                    </a>
-                                </div>
-                            </li>
+                                            class="ml-3 text-sm font-medium text-gray-900 dark:text-gray-300">{{ $notification }}</span>
+                                    </div>
+                                </li>
+                            @endforeach
+                            @if (!empty($notifications))
+                                <li>
+                                    <div class="flex items-center justify-center">
+                                        <a class="text-sm text-gray-600 underline rounded-md hover:text-gray-900 focus:outline-none"
+                                            href="#">
+                                            {{ __('Mark all as read') }}
+                                        </a>
+                                    </div>
+                                </li>
+                            @endif
+
                         </ul>
-                    </div>
-                </div>
+                        {{-- <x-dropdown-link :href="route('profile.edit')">
+                            {{ __('Profile') }}
+                        </x-dropdown-link>
+
+                        <!-- Authentication -->
+                        <form method="POST" action="{{ route('logout') }}">
+                            @csrf
+
+                            <x-dropdown-link :href="route('logout')"
+                                onclick="event.preventDefault();
+                                                this.closest('form').submit();">
+                                {{ __('Log Out') }}
+                            </x-dropdown-link>
+                        </form> --}}
+                    </x-slot>
+                </x-dropdown>
 
                 <!-- Settings Dropdown -->
 
